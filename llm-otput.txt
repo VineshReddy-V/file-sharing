@@ -1,0 +1,68 @@
+OPPORTUNITY ANALYZER - AGENTIC WORKFLOW LOG
+============================================================
+ 
+Run ID: abc123...
+URL: https://linkedin.com/jobs/...
+Status: completed
+Started: 4/25/2026, 6:30:00 AM
+Completed: 4/25/2026, 6:30:15 AM
+ 
+============================================================
+AGENT EXECUTION STEPS
+============================================================
+ 
+✅ Step 1: classifyCurrentPage (45ms)
+   Type: TOOL
+   Status: OK
+   Reasoning: Classify page cheaply before any LLM work
+   Input: {"tabId": 123}
+   Output: type=job_posting, headings=12
+   Time: 6:30:00 AM
+ 
+------------------------------------------------------------
+ 
+✅ Step 2: extractOpportunityFromPage (120ms)
+   Type: TOOL
+   Status: OK
+   Reasoning: Deterministic extraction (adapter or generic)
+   Input: {"tabId": 123, "url": "..."}
+   Output: title=Senior Engineer, reqs=8, conf=0.95
+   Time: 6:30:01 AM
+ 
+------------------------------------------------------------
+ 
+✅ Step 3: loadCandidateProfile (5ms)
+   Type: TOOL
+   Status: OK
+   Reasoning: Load locally stored candidate profile summary
+   Output: roles=3, skills=12, redacted=true
+   Time: 6:30:01 AM
+ 
+------------------------------------------------------------
+ 
+✅ Step 4: compareProfileToOpportunity (8ms)
+   Type: TOOL
+   Status: OK
+   Reasoning: Deterministic fit scoring (no LLM)
+   Output: score=78, title=0.85, exp=match
+   Time: 6:30:01 AM
+ 
+------------------------------------------------------------
+ 
+✅ Step 5: gemini:plan_analyze (2500ms)
+   Type: LLM
+   Status: OK
+   Reasoning: Plan + ground analysis in compact evidence
+   Input: {"promptChars": 1234, "temperature": 0.2}
+   Output: apply; strengths=4, gaps=2
+   Time: 6:30:02 AM
+ 
+------------------------------------------------------------
+ 
+============================================================
+SUMMARY
+============================================================
+Total Steps: 5
+LLM Calls: 1
+Tool Calls: 4
+Errors: 0
